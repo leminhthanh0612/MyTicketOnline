@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - Ticket Online</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -39,6 +38,48 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryUi")
     @RenderSection("scripts", required: false)
+    <script>
+    // Wait for the DOM to be ready
+        $(function () {
+            //init Date-time picker
+            $('.date-picker').datepicker({ dateFormat: 'dd/mm/yy' }).val();;
+
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+            $("#passenger").validate({
+            // Specify validation rules
+            rules: {
+                // The key name on the left side is the name attribute
+                // of an input field. Validation rules are defined
+                // on the right side
+                FirstName: "required",
+                Email: {
+                    required: false,
+                    // Specify that email should be validated
+                    // by the built-in "email" rule
+                    email: true
+                },
+                Phone: {
+                    required: true,
+                    number : true
+                }
+            },
+            // Specify validation error messages
+            messages: {
+                FirstName: "Please enter your firstname",
+                Email: "Please enter a valid email address"
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+
+    </script>
 </body>
 </html>

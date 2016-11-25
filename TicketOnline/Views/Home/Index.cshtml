@@ -32,37 +32,55 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>-->
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("GetInformation", "Information", FormMethod.Post, new { @class = "form-horizontal", role = "form", @name="passenger",@id= "passenger" }))
     {
-        @Html.AntiForgeryToken()
+
+
+
+        @*@Html.ValidationSummary(true)*@
+        @*@Html.AntiForgeryToken()*@
         <h4>Thông tin đăng ký - hành khách</h4>
         <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        
+        @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
+
         <div class="form-group">
-            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-            <span>(*)</span>
+            <label for="Hour" class="col-md-2 control-label">Tên</label>
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                <input type="text" name="FirstName" id="FirstName" class="form-control" />
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <label for="LastName" class="col-md-2 control-label">Họ</label>
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                <input type="text" name="LastName" id="LastName" class="form-control" />
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
-            <span>(*)</span>
+            <label for="Phone" class="col-md-2 control-label">Số điện thoại</label>
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                <input type="number" name="Phone" id="Phone" class="form-control" />
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <label for="Email" class="col-md-2 control-label">Email</label>
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                <input type="text" name="Email" id="Email" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="StartDate" class="col-md-2 control-label">Ngày khởi hành</label>
+            <div class="col-md-10">
+                <input type="text" name="StartDate" id="StartDate" class="form-control date-picker" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Hour" class="col-md-2 control-label">Giờ khởi hành</label>
+            <div class="col-md-10">
+                <select id="Hour" class="form-control" name="Hour">
+                    <option value="8:00">8:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="20:00">20:00</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -70,5 +88,6 @@
                 <input type="submit" class="btn btn-default" value="Tiếp tục" />
             </div>
         </div>
-    }
+        }
+
 </div>
