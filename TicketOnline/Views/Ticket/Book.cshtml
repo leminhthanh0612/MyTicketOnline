@@ -1,0 +1,41 @@
+﻿@using TicketOnline.Models
+
+@{
+    ViewBag.Title = "Đặt vé thành công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Coach Coach = ViewBag.Coach;
+}
+
+<h2>Đặt vé thành công</h2>
+
+<div class="row">
+    <div class="col-md-2"><p>Hành khách:</p></div>
+    <div class="col-md-10"><p>@Model.FirstName @Model.LastName</p></div>
+    <div class="col-md-2"><p>Email:</p></div>
+    <div class="col-md-10"><p>@Model.Email</p></div>
+    <div class="col-md-2"><p>Số điện thoại:</p></div>
+    <div class="col-md-10"><p>@Model.Phone</p></div>
+</div>
+
+<div class="row">
+    <h3>Đã đặt thành công vé với thông tin như sau</h3>
+    @foreach(Ticket ticket in Model.Tickets)
+    {
+        <div class="col-md-4" style="border:1px solid;">
+            <div class="col-md-5"><p>Số ghế:</p></div>
+            <div class="col-md-7"><p>@ticket.SeatId</p></div>
+            @if (Coach != null)
+            {
+                <div class="col-md-5"><p>Tên xe:</p></div>
+                <div class="col-md-7"><p>@(Coach.Name != null ? Coach.Name :"" )</p></div>
+                <div class="col-md-5"><p>Thời gian khởi thành:</p></div>
+                <div class="col-md-7"><p>@(Coach.StartDate != null ? ticket.Coach.StartDate.ToShortDateString() : "") - @(Coach.StartHour != null ? @Coach.StartHour : "")</p></div>
+                <div class="col-md-5"><p>Tuyến đường:</p></div>
+                <div class="col-md-7"><p>@(Coach.Router != null ? Coach.Router : "")</p></div>
+            }
+            
+        </div>
+    }
+</div>
+

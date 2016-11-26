@@ -65,12 +65,18 @@
                 Phone: {
                     required: true,
                     number : true
-                }
+                },
+                StartDate: "required"
             },
             // Specify validation error messages
             messages: {
-                FirstName: "Please enter your firstname",
-                Email: "Please enter a valid email address"
+                FirstName: "Vui lòng nhập tên",
+                Email: "Vui lòng nhập đúng định dạng email",
+                Phone: {
+                    required: "Vui lòng nhập số điện thoại",
+                    number : "Vui lòng nhập số"
+                },
+                StartDate : "Vui lòng chọn ngày khởi hành"
             },
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid

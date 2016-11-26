@@ -1,0 +1,170 @@
+﻿@model TicketOnline.Models.CoachViewModel
+@using TicketOnline.Models
+
+@{
+    ViewBag.Title = "Thông tin chuyến xe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int row = 4;
+    int FirstBlock,SecondBlock,ThirdBlock,FourBlock;
+
+    int number = Model.NumberSeat / 4;
+    FirstBlock = number;
+    SecondBlock = number;
+    ThirdBlock = number;
+    FourBlock = number;
+
+    if (Model.NumberSeat % 4 != 0)
+    {
+        int bonus = Model.NumberSeat % 4;
+        if (bonus == 3)
+        {
+            FirstBlock = number + 1;
+            SecondBlock = number + 1;
+            ThirdBlock = number + 1;
+        }
+        else if (bonus == 2)
+        {
+            FirstBlock = number + 1;
+            ThirdBlock = number + 1;
+        }
+        else
+        {
+            FirstBlock = number + 1;
+        }
+    }
+
+}
+
+<h2>Thông tin chuyến xe</h2>
+
+<div class="row">
+       <div class="jumbotron">
+           <div class="row">
+               <div class="col-md-2"><p>Tên xe:</p></div>
+               <div class="col-md-10"><p>@Model.Name</p></div>
+               <div class="col-md-2"><p>Khởi hành lúc:</p></div>
+               <div class="col-md-10"><p>@Model.StartDate.ToShortDateString() - @Model.StartHour</p></div>
+           </div>
+       </div>
+    <div class="row">
+        <div class="col-md-12">
+            <img class="img-responsive" src="~/Content/Image/arrow.png" style="width:5%;display:inline;" /> <p style="display:inline-block;">Hướng đầu xe</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered">
+                <tr>
+                    @for(int i = 0; i < FirstBlock; i ++)
+                    {
+                        <td class="ticket-table-column @(String.IsNullOrEmpty(@Model.Tickets[i].Status) ? "avaiable" :@Model.Tickets[i].Status.ToString() )" onclick="BookTicket(this,@Model.Tickets[i].SeatId)">
+                            @Model.Tickets[i].SeatId
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    @for (int i = FirstBlock; i < (SecondBlock + FirstBlock); i++)
+                    {
+                        <td class="ticket-table-column @(String.IsNullOrEmpty(@Model.Tickets[i].Status) ? "avaiable" :@Model.Tickets[i].Status.ToString() )" onclick="BookTicket(this,@Model.Tickets[i].SeatId)">
+                            @Model.Tickets[i].SeatId
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td style="padding-top:30px;" colspan="@(FirstBlock)"></td>
+                </tr>
+                <tr >
+                    @for (int i = (SecondBlock + FirstBlock); i < (SecondBlock + FirstBlock + ThirdBlock); i++)
+                    {
+                        <td class="ticket-table-column @(String.IsNullOrEmpty(@Model.Tickets[i].Status) ? "avaiable" :@Model.Tickets[i].Status.ToString() )" onclick="BookTicket(this,@Model.Tickets[i].SeatId)">
+                            @Model.Tickets[i].SeatId
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    @for (int i = (SecondBlock + FirstBlock + ThirdBlock); i < (SecondBlock + FirstBlock + ThirdBlock + FourBlock); i++)
+                    {
+                        <td class="ticket-table-column @(String.IsNullOrEmpty(@Model.Tickets[i].Status) ? "avaiable" :@Model.Tickets[i].Status.ToString() )" onclick="BookTicket(this,@Model.Tickets[i].SeatId)">
+                            @Model.Tickets[i].SeatId
+                        </td>
+                    }
+                </tr>
+        </table>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="col-md-6">
+                <div style="width:50px; height:25px;border:1px solid;"></div>
+            </div>
+            <div class="col-md-6">
+                 :Vé trống
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-6">
+                <div style="width:50px; height:25px;border:1px solid;background-color:#3cb521;"></div>
+            </div>
+            <div class="col-md-6">
+                : Vé đang chọn
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" style="margin-top:10px;">
+        <div class="col-md-6">
+            <div class="col-md-6">
+                <div style="width:50px; height:25px;border:1px solid;background-color:red;" ></div>
+            </div>
+            <div class="col-md-6">
+                : Vé đang giao dịch
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-6">
+                <div style="width:50px; height:25px;border:1px solid;background-color:coral;" ></div>
+            </div>
+            <div class="col-md-6">
+                : Vé đẵ bán
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12" style="text-align:center;margin-top:10px;">
+        <button type="button" class="btn btn-info" onclick="ConfirmTicket()" style="width:20%;">Đặt vé</button>
+    </div>
+</div>
+<form action="@Url.Action("Book","Ticket")" method="get" id="form-hidden" name="form-hidden">
+    <input type="hidden" name="CoachId" id="CoachId" value="@Model.Id" />
+    <input type="hidden" name="SeatIds" id="SeatIds" />
+</form>
+<script>
+    var seatIds = [];
+    function BookTicket(event, seatId) {
+        
+        $(event).addClass("label-success");
+        if ($(event).hasClass("avaiable")) {
+            var idx = seatIds.indexOf(seatId);
+            if (idx !== -1) {
+                seatIds.splice(idx, 1);
+                $(event).removeClass("label-success");
+            } else {
+                seatIds.push(seatId);
+            }
+
+            $('#SeatIds').val(seatIds);
+        }
+        return false;
+    }
+
+    function ConfirmTicket()
+    {
+        var value = $('#SeatIds').val();
+        var form = $('#form-hidden');
+        if (value != null && value != '') {
+            form.submit();
+        }
+      
+    }
+</script>
+

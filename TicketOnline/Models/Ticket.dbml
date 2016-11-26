@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Class="TicketDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=Ticket;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SticketContextConnection" Provider="System.Data.SqlClient" />
+  <Table Name="" Member="Tickets">
+    <Type Name="Ticket">
+      <Column Name="PassengerId" Type="System.Int32" CanBeNull="false" />
+      <Column Name="CoachId" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SeatId" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" CanBeNull="true" />
+      <Association Name="Passenger_Ticket" Member="Passenger" ThisKey="PassengerId" OtherKey="Id" Type="Passenger" IsForeignKey="true" />
+      <Association Name="Coach_Ticket" Member="Coach" ThisKey="CoachId" OtherKey="Id" Type="Coach" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Passengers">
+    <Type Name="Passenger">
+      <Column Name="Id" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" CanBeNull="true" />
+      <Column Name="Phone" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" CanBeNull="true" />
+      <Column Name="RegisterDate" Type="System.DateTime" CanBeNull="true" />
+      <Association Name="Passenger_Ticket" Member="Tickets" ThisKey="Id" OtherKey="PassengerId" Type="Ticket" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Coaches">
+    <Type Name="Coach">
+      <Column Name="Name" Type="System.String" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" CanBeNull="true" />
+      <Column Name="Router" Type="System.String" CanBeNull="false" />
+      <Column Name="Id" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" CanBeNull="false" />
+      <Column Name="StartHour" Type="System.String" CanBeNull="false" />
+      <Column Name="NumberSeat" Type="System.Int32" CanBeNull="false" />
+      <Association Name="Coach_Ticket" Member="Tickets" ThisKey="Id" OtherKey="CoachId" Type="Ticket" />
+    </Type>
+  </Table>
+</Database>
