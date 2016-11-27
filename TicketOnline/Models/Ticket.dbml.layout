@@ -8,10 +8,10 @@
         <elementListCompartment Id="26c1112d-f360-42fa-874c-959c238f4fd5" absoluteBounds="2.015, 2.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="9c503e11-c2c3-4833-ba29-ab34ba596531" absoluteBounds="6.375, 1.75, 2, 2.1554996744791666">
+    <classShape Id="9c503e11-c2c3-4833-ba29-ab34ba596531" absoluteBounds="5.625, 1.75, 2, 2.1554996744791666">
       <DataClassMoniker Name="/TicketDataContext/Coach" />
       <nestedChildShapes>
-        <elementListCompartment Id="a03e8432-1b0f-4131-bcf0-0574275deba6" absoluteBounds="6.39, 2.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a03e8432-1b0f-4131-bcf0-0574275deba6" absoluteBounds="5.64, 2.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="dff68a57-dc56-40a9-bc8a-69cab7893f43" absoluteBounds="3.75, 4.75, 2, 1.5785953776041666">
@@ -27,7 +27,7 @@
         <classShapeMoniker Id="dff68a57-dc56-40a9-bc8a-69cab7893f43" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.375 : 3.90549967447917); (7.375 : 5.53929768880208); (5.75 : 5.53929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.6875005 : 3.90549967447917); (6.6875005 : 5.53929768880208); (5.75 : 5.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TicketDataContext/Coach/Coach_Ticket" />
       <nodes>
         <classShapeMoniker Id="9c503e11-c2c3-4833-ba29-ab34ba596531" />

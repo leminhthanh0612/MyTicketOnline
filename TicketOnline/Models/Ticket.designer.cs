@@ -134,7 +134,7 @@ namespace TicketOnline.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PassengerId")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PassengerId", IsPrimaryKey=true)]
 		public int PassengerId
 		{
 			get

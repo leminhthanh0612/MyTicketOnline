@@ -25,11 +25,11 @@ namespace TicketOnline.Controllers
                 List<Coach> coaches = new List<Coach>();
                 if(model.Hour != "-")
                 {
-                    coaches = dc.Coaches.Where(q => q.StartDate == Convert.ToDateTime(model.StartDate)).ToList();
+                    coaches = dc.Coaches.Where(q => q.StartDate == DateTime.ParseExact(model.StartDate, "dd/MM/yyyy", null)).ToList();
                 }
                 else
                 {
-                    coaches = dc.Coaches.Where(q => q.StartDate == Convert.ToDateTime(model.StartDate) && q.StartHour == model.Hour).ToList();
+                    coaches = dc.Coaches.Where(q => q.StartDate == DateTime.ParseExact(model.StartDate, "dd/MM/yyyy", null) && q.StartHour == model.Hour).ToList();
                 }
                 
                 foreach (Coach coach in coaches)
