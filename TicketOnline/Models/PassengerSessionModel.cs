@@ -13,14 +13,14 @@ namespace TicketOnline.Models
         public string LastName { get; set; }
 
 
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
 
         public string Email { get; set; }
 
         public PassengerSessionModel() { }
 
-        public PassengerSessionModel(string firstName, string lastName, int phone, string email)
+        public PassengerSessionModel(string firstName, string lastName, string phone, string email)
         {
             this.FirstName = firstName;
             this.LastName = lastName;

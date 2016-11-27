@@ -23,7 +23,7 @@ namespace TicketOnline.Controllers
                 PassengerSessionModel.FromSession(this.Session).getPassenger(model);
                 TicketDataContext dc = new TicketDataContext();
                 List<Coach> coaches = new List<Coach>();
-                if(model.Hour != "-")
+                if(model.Hour == null || String.IsNullOrEmpty(model.Hour))
                 {
                     coaches = dc.Coaches.Where(q => q.StartDate == DateTime.ParseExact(model.StartDate, "dd/MM/yyyy", null)).ToList();
                 }

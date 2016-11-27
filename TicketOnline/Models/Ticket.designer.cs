@@ -109,6 +109,10 @@ namespace TicketOnline.Models
 		
 		private string _Status;
 		
+		private System.Nullable<bool> _isNew;
+		
+		private System.DateTime _CreationDate;
+		
 		private EntityRef<Passenger> _Passenger;
 		
 		private EntityRef<Coach> _Coach;
@@ -125,6 +129,10 @@ namespace TicketOnline.Models
     partial void OnSeatIdChanged();
     partial void OnStatusChanging(string value);
     partial void OnStatusChanged();
+    partial void OnisNewChanging(System.Nullable<bool> value);
+    partial void OnisNewChanged();
+    partial void OnCreationDateChanging(System.DateTime value);
+    partial void OnCreationDateChanged();
     #endregion
 		
 		public Ticket()
@@ -218,6 +226,46 @@ namespace TicketOnline.Models
 					this._Status = value;
 					this.SendPropertyChanged("Status");
 					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isNew")]
+		public System.Nullable<bool> isNew
+		{
+			get
+			{
+				return this._isNew;
+			}
+			set
+			{
+				if ((this._isNew != value))
+				{
+					this.OnisNewChanging(value);
+					this.SendPropertyChanging();
+					this._isNew = value;
+					this.SendPropertyChanged("isNew");
+					this.OnisNewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreationDate")]
+		public System.DateTime CreationDate
+		{
+			get
+			{
+				return this._CreationDate;
+			}
+			set
+			{
+				if ((this._CreationDate != value))
+				{
+					this.OnCreationDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreationDate = value;
+					this.SendPropertyChanged("CreationDate");
+					this.OnCreationDateChanged();
 				}
 			}
 		}
@@ -323,7 +371,7 @@ namespace TicketOnline.Models
 		
 		private string _LastName;
 		
-		private int _Phone;
+		private string _Phone;
 		
 		private string _Email;
 		
@@ -341,7 +389,7 @@ namespace TicketOnline.Models
     partial void OnFirstNameChanged();
     partial void OnLastNameChanging(string value);
     partial void OnLastNameChanged();
-    partial void OnPhoneChanging(int value);
+    partial void OnPhoneChanging(string value);
     partial void OnPhoneChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
@@ -415,8 +463,8 @@ namespace TicketOnline.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone")]
-		public int Phone
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", CanBeNull=false)]
+		public string Phone
 		{
 			get
 			{

@@ -20,13 +20,17 @@ namespace TicketOnline.Controllers
             TicketDataContext dc = new TicketDataContext();
             PassengerSessionModel passengerSession = PassengerSessionModel.FromSession(this.Session);
             Passenger passenger = new Passenger();
-            if(passengerSession != null)
+            if (passengerSession != null)
             {
                 passenger.Email = passengerSession.Email;
                 passenger.FirstName = passengerSession.FirstName;
                 passenger.LastName = passengerSession.LastName;
                 passenger.Phone = passengerSession.Phone;
                 passenger.RegisterDate = DateTime.Now;
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
             if (!String.IsNullOrEmpty(SeatIds))
             {
@@ -42,11 +46,13 @@ namespace TicketOnline.Controllers
                             ticket.CoachId = int.Parse(CoachId);
                             ticket.SeatId = int.Parse(seatId);
                             ticket.Status = Status.Pendding.ToString();
+                            ticket.isNew = true;
+                            ticket.CreationDate = DateTime.Now;
                             passenger.Tickets.Add(ticket);
                         }
                         else
                         {
-                            return View();
+                            return RedirectToAction("GetInformation","Information");
                         }
                         
                     }

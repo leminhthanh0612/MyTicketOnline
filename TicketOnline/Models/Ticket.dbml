@@ -6,6 +6,8 @@
       <Column Name="CoachId" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SeatId" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Status" Type="System.String" CanBeNull="true" />
+      <Column Member="isNew" Type="System.Boolean" CanBeNull="true" />
+      <Column Member="CreationDate" Type="System.DateTime" CanBeNull="false" />
       <Association Name="Passenger_Ticket" Member="Passenger" ThisKey="PassengerId" OtherKey="Id" Type="Passenger" IsForeignKey="true" />
       <Association Name="Coach_Ticket" Member="Coach" ThisKey="CoachId" OtherKey="Id" Type="Coach" IsForeignKey="true" />
     </Type>
@@ -15,7 +17,7 @@
       <Column Name="Id" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FirstName" Type="System.String" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" CanBeNull="true" />
-      <Column Name="Phone" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" CanBeNull="false" />
       <Column Name="Email" Type="System.String" CanBeNull="true" />
       <Column Name="RegisterDate" Type="System.DateTime" CanBeNull="true" />
       <Association Name="Passenger_Ticket" Member="Tickets" ThisKey="Id" OtherKey="PassengerId" Type="Ticket" />
