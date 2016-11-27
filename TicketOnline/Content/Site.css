@@ -28,10 +28,10 @@ textarea {
     cursor:pointer;
 }
 .ticket-table-column.Pendding{
-    background-color:coral;
+    background-color:aqua;
     cursor:not-allowed;
 }
 .ticket-table-column.Sold{
-    background-color:red;
+    background-color:darkgrey;
     cursor:not-allowed;
 }
